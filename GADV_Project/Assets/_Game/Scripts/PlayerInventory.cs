@@ -1,0 +1,69 @@
+using UnityEngine;
+
+public class PlayerInventory : MonoBehaviour
+{
+    private GameObject inventoryItem = null;
+    private PlayerController PlayerController;
+
+    void Start()
+    {
+        PlayerController = GetComponent<PlayerController>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.I)) // Placeholder for inventory key input
+        {
+            GetCurrentItem();
+        }
+        if (Input.GetKeyDown(KeyCode.Q)) // Placeholder for remove item key input
+        {
+            RemoveCurrentItem();
+        }
+    }
+
+    public bool AddItemToInv(GameObject item)
+    {
+        if (inventoryItem != null)
+        {
+            Debug.LogWarning("Inventory already has an item.");
+            return false;
+        }
+        else
+        {
+            inventoryItem = item;
+            Debug.Log($"Added {item.name} to inventory.");
+            return true;
+        }
+    }
+
+    public void RemoveCurrentItem()
+    {
+        if (inventoryItem != null)
+        {
+            // Offset the item 1 unit to the right of the player
+            Vector2 dropDirection = PlayerController.LastMoveDirection; // Safe, read-only access
+            inventoryItem.transform.position = transform.position + (Vector3)dropDirection;
+            inventoryItem.SetActive(true);
+            Debug.Log($"{inventoryItem.name} has been removed from your inventory.");
+            inventoryItem = null;
+        }
+        else
+        {
+            Debug.Log("Inventory is already empty.");
+        }
+    }
+
+    public void GetCurrentItem()
+    {
+        if (inventoryItem != null)
+        {
+            Debug.Log($"Current Inventory Item: {inventoryItem.name}");
+        }
+        else
+        {
+            Debug.Log("Inventory is empty.");
+        }
+    }
+}
