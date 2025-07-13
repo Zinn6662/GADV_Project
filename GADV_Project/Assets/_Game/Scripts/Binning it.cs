@@ -1,20 +1,33 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Binningit : MonoBehaviour
 {
-    // if (currentItem.name.StartsWith("Trash"))
-    //{
-    //Debug.Log("This item is a Trash prefab!");
-    //}
-// Start is called once before the first execution of Update after the MonoBehaviour is created
-void Start()
+       void Start()
     {
-        
+        Debug.Log("Binningit script started. Waiting for player to collide with trash.");
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            PlayerInventory playerInventory = collision.gameObject.GetComponent<PlayerInventory>();
+            GameObject item = playerInventory.GetCurrentItem();
+            if (item != null && item.name.StartsWith("Trash"))
+            {
+                playerInventory.RemoveCurrentItem();
+                Debug.Log("Removed trash item from inventory.");
+                //UpdateScore();
+            }
+            else
+            {
+                Debug.Log("Player does not have any Trash on hand");
+            }
+        }
     }
 }

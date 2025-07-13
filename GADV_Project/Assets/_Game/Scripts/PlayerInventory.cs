@@ -19,7 +19,7 @@ public class PlayerInventory : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Q)) // Placeholder for remove item key input
         {
-            RemoveCurrentItem();
+            DropCurrentItem();
         }
     }
 
@@ -38,7 +38,7 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
-    public void RemoveCurrentItem()
+    public void DropCurrentItem()
     {
         if (inventoryItem != null)
         {
@@ -55,15 +55,31 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
-    public void GetCurrentItem()
+    public void RemoveCurrentItem()
     {
         if (inventoryItem != null)
         {
-            Debug.Log($"Current Inventory Item: {inventoryItem.name}");
+            Destroy(inventoryItem); 
+            Debug.Log($"{inventoryItem.name} has been removed.");
+            inventoryItem = null;
         }
         else
         {
             Debug.Log("Inventory is empty.");
+        }
+    }
+
+    public GameObject GetCurrentItem()
+    {
+        if (inventoryItem != null)
+        {
+            Debug.Log($"Current Inventory Item: {inventoryItem.name}");
+            return inventoryItem;
+        }
+        else
+        {
+            Debug.Log("Inventory is empty.");
+            return null;    
         }
     }
 }
