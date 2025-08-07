@@ -20,8 +20,12 @@ public class PlayerInventory : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Q)) // Placeholder for remove item key input
         {
-            itemDropped = true; // Set the flag to true when an item is dropped
-            StartCoroutine(DropItemWithDelay());
+            if (inventoryItem != null)
+            {
+                itemDropped = true; // Set the flag to true when an item is dropped
+                StartCoroutine(DropItemWithDelay());
+            }
+            
         }
     }
 

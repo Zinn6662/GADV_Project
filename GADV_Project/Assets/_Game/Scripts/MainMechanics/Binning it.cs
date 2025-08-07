@@ -4,7 +4,8 @@ using UnityEngine;
 public class Binningit : MonoBehaviour
 {
     public Progress_Tracker progress_Tracker;
-       void Start()
+    public bool isTrashBinned = false; // Flag to check if the bin is active
+    void Start()
     {
         progress_Tracker = GetComponent<Progress_Tracker>();
     }
@@ -24,6 +25,8 @@ public class Binningit : MonoBehaviour
                 playerInventory.RemoveCurrentItem();
                 Debug.Log("Removed trash item from inventory.");
                 progress_Tracker.AddProgress(); // Increment progress when trash is removed
+                isTrashBinned = true; // Set the flag to indicate trash has been binned 
+                gameObject.SetActive(false); // Disable the bin after use
             }
             else
             {

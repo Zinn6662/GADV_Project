@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Open_Door : MonoBehaviour
 {
+    public bool doorOpen = false;
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
@@ -14,7 +15,8 @@ public class Open_Door : MonoBehaviour
             {
                 playerInventory.RemoveCurrentItem();
                 Debug.Log("Removed key item from inventory.");
-                gameObject.SetActive(false); 
+                gameObject.SetActive(false);
+                doorOpen = true;
             }
             else if (!string.IsNullOrEmpty(color) && item != null && item.name.EndsWith("_Key"))
             {
@@ -27,7 +29,7 @@ public class Open_Door : MonoBehaviour
         }
     }
 
-    string CheckDoorName()
+    public string CheckDoorName()
     {
         if (gameObject.name.EndsWith("_Door"))
         {
