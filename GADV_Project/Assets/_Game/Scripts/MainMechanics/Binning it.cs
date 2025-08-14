@@ -25,8 +25,7 @@ public class Binningit : MonoBehaviour
                 playerInventory.RemoveCurrentItem();
                 Debug.Log("Removed trash item from inventory.");
                 progress_Tracker.AddProgress(); // Increment progress when trash is removed
-                isTrashBinned = true; // Set the flag to indicate trash has been binned 
-                gameObject.SetActive(false); // Disable the bin after use
+                isTrashBinned = true; // Set the flag to indicate trash has been binned
             }
             else
             {

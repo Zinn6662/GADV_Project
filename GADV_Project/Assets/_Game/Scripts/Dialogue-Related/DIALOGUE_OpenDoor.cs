@@ -13,7 +13,7 @@ public class DIALOGUE_OpenDoor : MonoBehaviour
         // Assign both doors by name, or drag them in the Inspector
         openDoors = new Open_Door[2];
         openDoors[0] = GameObject.Find("Red_Door").GetComponent<Open_Door>();
-        openDoors[1] = GameObject.Find("Blue_Door").GetComponent<Open_Door>();
+        openDoors[1] = GameObject.Find("Green_Door").GetComponent<Open_Door>();
         playerController = GetComponent<PlayerController>();
     }
 

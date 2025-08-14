@@ -5,6 +5,8 @@ public class WinCon : MonoBehaviour
     private Collider2D _myCol;
     private GameObject _myGameObject;
 
+    public bool isWinConReached = false; // Flag to check if the win condition has been reached
+
     private void Start()
     {
         _myCol = GetComponent<Collider2D>();
@@ -22,6 +24,7 @@ public class WinCon : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             Debug.Log("You Win!");
+            isWinConReached = true; // Set the win condition flag to true
             // Here you can add code to handle the win condition, like loading a new scene or showing a win UI
         }
     }
